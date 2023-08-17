@@ -3,14 +3,26 @@ package sas.mastermind.api.rest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.core.controllers.StartController;
+
 
 @RestController
 @RequestMapping("/mastermind")
 public class StartView {
+    private String name = "No se quien soy";
+    public StartView(){
+        System.out.println("Bean Creado  " + this.toString());
+    }
+
+    public void interact(StartController startController){
+        startController.start();
+        name = "Soy el de la API";
+    }
+
     @GetMapping("/start")
-    public String interact(StartController startController){
-        return "Start View";
+    public String show(){
+        System.out.println("Llegaste al StartView");
+        System.out.println(name);
+        return "MASTER MIND Start View  ";
     }
 }
