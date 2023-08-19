@@ -1,15 +1,87 @@
 package sas.mastermind.api.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import sas.mastermind.api.dto.PlayViewDTO;
 import sas.mastermind.core.controllers.PlayController;
+import sas.mastermind.core.models.ProposedCombination;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/mastermind")
 public class PlayView {
-    @GetMapping("/play")
-    public void interact(PlayController playController){
+    private PlayController playController;
+    //private PlayViewDTO playViewDTO;
 
+    @GetMapping("/play")
+    public PlayView show() {
+        System.out.println("Llegaste al PlayView");
+        return this;
+    }
+
+    @PutMapping("/play")
+    public PlayView show(@RequestBody String proposedCombination) {
+        this.playController.addProposedCombination(proposedCombination);
+        System.out.println("Agregaste una combination");
+        return this;
+    }
+
+    @GetMapping("/play/add")//TODO borrar este metodo de pruebas y usar el PutMapping
+    public PlayView add(@RequestParam String p) {
+        this.playController.addProposedCombination(p);
+        System.out.println("Agregaste una combination");
+        return this;
+    }
+
+    public void interact(PlayController playController) {
+        this.playController = playController;
+        //this.playViewDTO = new PlayViewDTO(playController);
+    }
+
+    public boolean isWinner() {
+        return this.playController.getCurrentAttempt() > 0 && this.playController.isWinner();
+    }
+
+    public boolean isFinished() {
+        return this.playController.isFinished();
+    }
+
+    public boolean isUndoable() {
+        return this.playController.isUndoable();
+    }
+
+    public boolean isRedoable() {
+        return this.playController.isRedoable();
+    }
+
+    public int getCurrentAttempt() {
+        return this.playController.getCurrentAttempt();
+    }
+
+    public String getSecretCombination() { //TODO este metodo se borra, es para pruebas
+        return this.playController.getSecretCombination().toString();
+    }
+
+    public ArrayList<String> getProposedCombinations() {
+        ArrayList<String> proposedCombinations = new ArrayList<>();
+        for (ProposedCombination combination : this.playController.getProposeCombinations()) {
+            proposedCombinations.add(combination.toString());
+        }
+        return proposedCombinations;
+    }
+
+    public ArrayList<Integer> getBlacks() {
+        ArrayList<Integer> blacks = new ArrayList<>();
+        for (ProposedCombination combination : this.playController.getProposeCombinations()) {
+            blacks.add(this.playController.calculateBlacks(combination));
+        }
+        return blacks;
+    }
+    public ArrayList<Integer> getWhites() {
+        ArrayList<Integer> whites = new ArrayList<>();
+        for (ProposedCombination combination : this.playController.getProposeCombinations()) {
+            whites.add(this.playController.calculateWhites(combination));
+        }
+        return whites;
     }
 }

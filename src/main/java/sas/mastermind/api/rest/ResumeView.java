@@ -8,8 +8,14 @@ import sas.mastermind.core.controllers.ResumeController;
 @RestController
 @RequestMapping("/mastermind")
 public class ResumeView {
-    @GetMapping("/resume")
+
     public void interact (ResumeController resumeController){
 
+    }
+
+    @GetMapping("/resume")
+    public String show(){
+        System.out.println("Llegaste al ResumeView");
+        return "MASTER MIND Resume View  ";
     }
 }
