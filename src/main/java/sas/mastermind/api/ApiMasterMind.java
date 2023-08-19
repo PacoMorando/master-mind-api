@@ -30,7 +30,7 @@ public class ApiMasterMind {
         }
     }
 
-    public String getCurrentView(int view) {
-        return ((RestView)this.view).getCurrentView(view);
+    public String getCurrentView(/*int view*/) {
+        return ((RestView)this.view).getCurrentView();
     }
 }

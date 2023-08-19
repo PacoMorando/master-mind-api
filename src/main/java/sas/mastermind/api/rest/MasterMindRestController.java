@@ -18,16 +18,10 @@ public class MasterMindRestController {
         this.apiMasterMind = apiMasterMind;
         System.out.println("API INSTANCIADA   " + this.apiMasterMind.toString());
     }
-/*
-    @GetMapping("/main")
-    public RedirectView main() {
-        this.apiMasterMind.play();
-        return new RedirectView(this.apiMasterMind.getCurrentView());
-    }*/
 
     @GetMapping("/main")
-    public RedirectView main(@RequestParam int view) {
+    public RedirectView main(/*@RequestParam int view*/) {
         this.apiMasterMind.play();
-        return new RedirectView(this.apiMasterMind.getCurrentView(view));
+        return new RedirectView(this.apiMasterMind.getCurrentView(/*view*/));
     }
 }

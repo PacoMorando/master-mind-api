@@ -23,13 +23,13 @@ public class RestView extends View {
     @Override
     public void visit(StartController startController) {
         this.startView.interact(startController);
-        //this.currentView = "./start";
+        this.currentView = "./start";
     }
 
     @Override
     public void visit(PlayController playController) {
         this.playView.interact(playController);
-        //this.currentView = "./play";
+        this.currentView = "./play";
     }
 
     @Override
@@ -43,7 +43,11 @@ public class RestView extends View {
         //this.currentView = "./save";
     }
 
-    public String getCurrentView(int view) {
+    public String getCurrentView() {
+        return this.currentView;
+    }
+
+    /*public String getCurrentView(int view) {
         if (view == 1) {
             return "./start";
         }
@@ -54,7 +58,7 @@ public class RestView extends View {
             return "./resume";
         }
         return null;
-    }
+    }*/
 
     @Autowired
     public void setStartView(StartView startView) {

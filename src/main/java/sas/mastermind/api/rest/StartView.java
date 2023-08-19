@@ -3,26 +3,28 @@ package sas.mastermind.api.rest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.core.controllers.StartController;
 
 
 @RestController
 @RequestMapping("/mastermind")
 public class StartView {
-    private String name = "No se quien soy";//TODO eliminar, era para pruebas
-    public StartView(){
-        System.out.println("Bean Creado  " + this.toString());
-    }
+    private StartController startController;
 
-    public void interact(StartController startController){
-        startController.start();
-        this.name = "Soy el de la API";
+    public void interact(StartController startController) {
+        this.startController = startController;
     }
 
     @GetMapping("/start")
-    public String show(){
-        System.out.println("Llegaste al StartView");
-        System.out.println(name);
-        return "MASTER MIND Start View  ";
+    public String show() {
+        return "MASTER MIND \n" + " you can access to:  ./newGame or ./openGame";
+    }
+
+    @GetMapping("/start/newGame")
+    public RedirectView newGame () {
+        this.startController.start();
+        //return new RedirectView("https://youtube.com"); TODO ojo aqui voy a redirigir al link del front, y como todo se lo pido al main, ahi habra avanzado de state al playstate
+        return new RedirectView("main");
     }
 }

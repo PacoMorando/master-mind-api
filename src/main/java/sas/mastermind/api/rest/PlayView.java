@@ -20,7 +20,7 @@ public class PlayView {
     }
 
     @PutMapping("/play")
-    public PlayView show(@RequestBody String proposedCombination) {
+    public PlayView addProposedCombination(@RequestBody String proposedCombination) {
         this.playController.addProposedCombination(proposedCombination);
         System.out.println("Agregaste una combination");
         return this;
@@ -33,9 +33,26 @@ public class PlayView {
         return this;
     }
 
+    @GetMapping("/play/undo")//TODO borrar este metodo de pruebas y usar el PutMapping
+    public PlayView undo() {
+        if (this.isUndoable()) {
+            this.playController.undo();
+            System.out.println("Undo");
+        }
+        return this;
+    }
+
+    @GetMapping("/play/redo")//TODO borrar este metodo de pruebas y usar el PutMapping
+    public PlayView redo() {
+        if (this.isRedoable()){
+            this.playController.redo();
+            System.out.println("Redo");
+        }
+        return this;
+    }
+
     public void interact(PlayController playController) {
         this.playController = playController;
-        //this.playViewDTO = new PlayViewDTO(playController);
     }
 
     public boolean isWinner() {
@@ -77,6 +94,7 @@ public class PlayView {
         }
         return blacks;
     }
+
     public ArrayList<Integer> getWhites() {
         ArrayList<Integer> whites = new ArrayList<>();
         for (ProposedCombination combination : this.playController.getProposeCombinations()) {
