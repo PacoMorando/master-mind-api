@@ -1,6 +1,7 @@
 package sas.mastermind.api.rest;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.api.dto.PlayViewDTO;
 import sas.mastermind.core.controllers.PlayController;
 import sas.mastermind.core.models.ProposedCombination;
@@ -22,15 +23,25 @@ public class PlayView {
     @PutMapping("/play")
     public PlayView addProposedCombination(@RequestBody String proposedCombination) {
         this.playController.addProposedCombination(proposedCombination);
+        //this.showResults();
         System.out.println("Agregaste una combination");
         return this;
     }
 
+    private RedirectView showResults() {
+        if (isFinished()) {
+            this.playController.next();
+            this.playController.next();//TODO borrar, esto es para brincarme el save
+        }
+        return new RedirectView("../main");
+    }
+
     @GetMapping("/play/add")//TODO borrar este metodo de pruebas y usar el PutMapping
-    public PlayView add(@RequestParam String p) {
+    public RedirectView add(@RequestParam String p) {
         this.playController.addProposedCombination(p);
+        this.showResults();
         System.out.println("Agregaste una combination");
-        return this;
+        return new RedirectView("../main");
     }
 
     @GetMapping("/play/undo")//TODO borrar este metodo de pruebas y usar el PutMapping

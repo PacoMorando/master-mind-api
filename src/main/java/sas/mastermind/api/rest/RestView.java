@@ -35,12 +35,12 @@ public class RestView extends View {
     @Override
     public void visit(ResumeController resumeController) {
         this.resumeView.interact(resumeController);
-        //this.currentView = "./resume";
+        this.currentView = "./resume";
     }
 
     @Override
     public void visit(SaveController saveController) {
-        //this.currentView = "./save";
+        this.currentView = "./save";
     }
 
     public String getCurrentView() {

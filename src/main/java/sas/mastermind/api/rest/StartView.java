@@ -25,6 +25,6 @@ public class StartView {
     public RedirectView newGame () {
         this.startController.start();
         //return new RedirectView("https://youtube.com"); TODO ojo aqui voy a redirigir al link del front, y como todo se lo pido al main, ahi habra avanzado de state al playstate
-        return new RedirectView("main");
+        return new RedirectView("../main");
     }
 }
