@@ -1,5 +1,6 @@
 package sas.mastermind.api.rest;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import sas.mastermind.core.controllers.StartController;
 
 @RestController
 @RequestMapping("/mastermind")
+@CrossOrigin("http://localhost:4200/")
 public class StartView {
     private StartController startController;
 
@@ -17,8 +19,10 @@ public class StartView {
     }
 
     @GetMapping("/start")
-    public String show() {
-        return "MASTER MIND \n" + " you can access to:  ./newGame or ./openGame";
+    public void show() {
+        System.out.println("Llgaste al start");
+        //return new RedirectView("https://www.youtube.com");
+        //return "MASTER MIND \n" + " you can access to:  ./newGame or ./openGame";
     }
 
     @GetMapping("/start/newGame")

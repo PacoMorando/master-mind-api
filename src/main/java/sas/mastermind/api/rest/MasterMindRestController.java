@@ -1,15 +1,13 @@
 package sas.mastermind.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.api.ApiMasterMind;
 
 @RestController
 @RequestMapping("/mastermind")
+@CrossOrigin("http://localhost:4200/")
 public class MasterMindRestController {
     private ApiMasterMind apiMasterMind;
 
@@ -21,6 +19,7 @@ public class MasterMindRestController {
 
     @GetMapping("/main")
     public RedirectView main(/*@RequestParam int view*/) {
+        System.out.println("MAIN");
         this.apiMasterMind.play();
         return new RedirectView(this.apiMasterMind.getCurrentView(/*view*/));
     }

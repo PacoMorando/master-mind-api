@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/mastermind")
+@CrossOrigin("http://localhost:4200/")
 public class PlayView {
     private PlayController playController;
     //private PlayViewDTO playViewDTO;

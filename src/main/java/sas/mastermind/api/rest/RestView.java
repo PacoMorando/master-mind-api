@@ -47,18 +47,6 @@ public class RestView extends View {
         return this.currentView;
     }
 
-    /*public String getCurrentView(int view) {
-        if (view == 1) {
-            return "./start";
-        }
-        if (view == 2) {
-            return "./play";
-        }
-        if (view == 3) {
-            return "./resume";
-        }
-        return null;
-    }*/
 
     @Autowired
     public void setStartView(StartView startView) {
