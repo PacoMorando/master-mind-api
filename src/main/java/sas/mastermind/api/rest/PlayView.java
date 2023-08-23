@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/mastermind")
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("http://localhost:4200")
 public class PlayView {
     private PlayController playController;
     //private PlayViewDTO playViewDTO; TODO si tengo que hacer un objeto
@@ -21,28 +21,39 @@ public class PlayView {
         return this;
     }
 
-    @PutMapping("/play")//TODO este no esta redirigiendo...
+  /*  @PutMapping("/play")//TODO este no esta redirigiendo...
     public PlayView addProposedCombination(@RequestBody String proposedCombination) {
         this.playController.addProposedCombination(proposedCombination);
         System.out.println("Agregaste una combination");
         this.showResults();//TODO no esta redirigiendo
         return this;
+    }*/
+    @PutMapping("/play/addProposedCombination")//TODO este no esta redirigiendo...
+    public PlayView addProposedCombination(@RequestBody String proposedCombination) {
+        this.playController.addProposedCombination(proposedCombination);
+        System.out.println("Agregaste la combination: " + proposedCombination);
+        //this.showResults();
+        //return new RedirectView("/showResults");
+        return this;
     }
 
-    @GetMapping("/play/add")//TODO borrar este metodo de pruebas y usar el PutMapping
+  /*  @GetMapping("/play/add")//TODO borrar este metodo de pruebas y usar el PutMapping
     public RedirectView add(@RequestParam String p) {
         this.playController.addProposedCombination(p);
         this.showResults();
         System.out.println("Agregaste una combination");
         return new RedirectView("../main");
-    }
+    }*/
 
+    @GetMapping("/showResults")
     private RedirectView showResults() {
+        System.out.println("Evaluando Resultado de combinacion propuesta");
         if (isFinished()) {
+            System.out.println("Se ha terminado");
             this.playController.next();
             this.playController.next();//TODO borrar, esto es para brincarme el save
         }
-        return new RedirectView("../main");
+        return new RedirectView("./main");
     }
 
     @GetMapping("/play/undo")//TODO borrar este metodo de pruebas y usar el PutMapping

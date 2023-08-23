@@ -1,5 +1,6 @@
 package sas.mastermind.api.rest;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +9,7 @@ import sas.mastermind.core.controllers.ResumeController;
 
 @RestController
 @RequestMapping("/mastermind")
+@CrossOrigin("http://localhost:4200")
 public class ResumeView {
     private ResumeController resumeController;
 
@@ -16,9 +18,9 @@ public class ResumeView {
     }
 
     @GetMapping("/resume")
-    public String show(){
+    public void show(){
         System.out.println("Llegaste al ResumeView");
-        return "MASTER MIND Resume View  you can access to:  ./continue or ./exit";
+        //return "MASTER MIND Resume View  you can access to:  ./continue or ./exit";
     }
 
     @GetMapping("/resume/continue")

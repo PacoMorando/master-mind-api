@@ -10,7 +10,7 @@ import sas.mastermind.core.controllers.StartController;
 
 @RestController
 @RequestMapping("/mastermind")
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("http://localhost:4200")
 public class StartView {
     private StartController startController;
 
@@ -21,14 +21,12 @@ public class StartView {
     @GetMapping("/start")
     public void show() {
         System.out.println("Llgaste al start");
-        //return new RedirectView("https://www.youtube.com");
-        //return "MASTER MIND \n" + " you can access to:  ./newGame or ./openGame";
     }
 
     @GetMapping("/start/newGame")
     public RedirectView newGame () {
         this.startController.start();
-        //return new RedirectView("https://youtube.com"); TODO ojo aqui voy a redirigir al link del front, y como todo se lo pido al main, ahi habra avanzado de state al playstate
+        System.out.println("New Game");
         return new RedirectView("../main");
     }
 }

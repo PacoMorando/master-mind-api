@@ -7,7 +7,7 @@ import sas.mastermind.api.ApiMasterMind;
 
 @RestController
 @RequestMapping("/mastermind")
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("http://localhost:4200")
 public class MasterMindRestController {
     private ApiMasterMind apiMasterMind;
 
@@ -18,9 +18,9 @@ public class MasterMindRestController {
     }
 
     @GetMapping("/main")
-    public RedirectView main(/*@RequestParam int view*/) {
+    public RedirectView main() {
         System.out.println("MAIN");
         this.apiMasterMind.play();
-        return new RedirectView(this.apiMasterMind.getCurrentView(/*view*/));
+        return new RedirectView(this.apiMasterMind.getCurrentView());
     }
 }
