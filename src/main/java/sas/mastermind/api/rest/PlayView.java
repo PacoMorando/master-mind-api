@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @CrossOrigin("http://localhost:4200/")
 public class PlayView {
     private PlayController playController;
-    //private PlayViewDTO playViewDTO;
+    //private PlayViewDTO playViewDTO; TODO si tengo que hacer un objeto
 
     @GetMapping("/play")
     public PlayView show() {
@@ -21,20 +21,12 @@ public class PlayView {
         return this;
     }
 
-    @PutMapping("/play")
+    @PutMapping("/play")//TODO este no esta redirigiendo...
     public PlayView addProposedCombination(@RequestBody String proposedCombination) {
         this.playController.addProposedCombination(proposedCombination);
-        //this.showResults();
         System.out.println("Agregaste una combination");
+        this.showResults();//TODO no esta redirigiendo
         return this;
-    }
-
-    private RedirectView showResults() {
-        if (isFinished()) {
-            this.playController.next();
-            this.playController.next();//TODO borrar, esto es para brincarme el save
-        }
-        return new RedirectView("../main");
     }
 
     @GetMapping("/play/add")//TODO borrar este metodo de pruebas y usar el PutMapping
@@ -42,6 +34,14 @@ public class PlayView {
         this.playController.addProposedCombination(p);
         this.showResults();
         System.out.println("Agregaste una combination");
+        return new RedirectView("../main");
+    }
+
+    private RedirectView showResults() {
+        if (isFinished()) {
+            this.playController.next();
+            this.playController.next();//TODO borrar, esto es para brincarme el save
+        }
         return new RedirectView("../main");
     }
 
