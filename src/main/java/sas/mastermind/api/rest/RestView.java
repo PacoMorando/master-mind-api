@@ -40,6 +40,7 @@ public class RestView extends View {
 
     @Override
     public void visit(SaveController saveController) {
+        this.saveView.interact(saveController);
         this.currentView = "./save";
     }
 

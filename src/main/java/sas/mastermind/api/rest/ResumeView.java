@@ -14,6 +14,7 @@ public class ResumeView {
     private ResumeController resumeController;
 
     public void interact (ResumeController resumeController){
+        System.out.println("Interact del ResumeView");
         this.resumeController = resumeController;
     }
 

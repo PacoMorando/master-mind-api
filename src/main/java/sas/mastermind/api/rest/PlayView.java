@@ -21,29 +21,12 @@ public class PlayView {
         return this;
     }
 
-  /*  @PutMapping("/play")//TODO este no esta redirigiendo...
-    public PlayView addProposedCombination(@RequestBody String proposedCombination) {
-        this.playController.addProposedCombination(proposedCombination);
-        System.out.println("Agregaste una combination");
-        this.showResults();//TODO no esta redirigiendo
-        return this;
-    }*/
     @PutMapping("/play/addProposedCombination")//TODO este no esta redirigiendo...
     public PlayView addProposedCombination(@RequestBody String proposedCombination) {
         this.playController.addProposedCombination(proposedCombination);
         System.out.println("Agregaste la combination: " + proposedCombination);
-        //this.showResults();
-        //return new RedirectView("/showResults");
         return this;
     }
-
-  /*  @GetMapping("/play/add")//TODO borrar este metodo de pruebas y usar el PutMapping
-    public RedirectView add(@RequestParam String p) {
-        this.playController.addProposedCombination(p);
-        this.showResults();
-        System.out.println("Agregaste una combination");
-        return new RedirectView("../main");
-    }*/
 
     @GetMapping("/showResults")
     private RedirectView showResults() {
@@ -51,12 +34,12 @@ public class PlayView {
         if (isFinished()) {
             System.out.println("Se ha terminado");
             this.playController.next();
-            this.playController.next();//TODO borrar, esto es para brincarme el save
+            //this.playController.next();//TODO borrar, esto es para brincarme el save
         }
         return new RedirectView("./main");
     }
 
-    @GetMapping("/play/undo")//TODO borrar este metodo de pruebas y usar el PutMapping
+    @GetMapping("/play/undo")
     public PlayView undo() {
         if (this.isUndoable()) {
             this.playController.undo();
@@ -65,14 +48,22 @@ public class PlayView {
         return this;
     }
 
-    @GetMapping("/play/redo")//TODO borrar este metodo de pruebas y usar el PutMapping
+    @GetMapping("/play/redo")
     public PlayView redo() {
-        if (this.isRedoable()){
+        if (this.isRedoable()) {
             this.playController.redo();
             System.out.println("Redo");
         }
         return this;
     }
+
+    @GetMapping("/play/exit")
+    private RedirectView exit() {
+        System.out.println("Dirigiendo al Resume");
+        this.playController.next();
+        return new RedirectView("../main");
+    }
+
 
     public void interact(PlayController playController) {
         this.playController = playController;
