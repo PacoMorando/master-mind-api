@@ -2,10 +2,10 @@ package sas.mastermind.api.dto;
 
 import sas.mastermind.core.controllers.PlayController;
 
-public class PlayViewDTO {
+public class SessionViewDTO {
     private PlayController playController;
 
-    public PlayViewDTO(PlayController playController) {
+    public SessionViewDTO(PlayController playController) {
         this.playController = playController;
     }
 

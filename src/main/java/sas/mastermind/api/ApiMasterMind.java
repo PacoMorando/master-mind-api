@@ -2,7 +2,6 @@ package sas.mastermind.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import sas.mastermind.api.dao.SessionAPIDAO;
 import sas.mastermind.api.rest.RestView;
 import sas.mastermind.core.controllers.AcceptorController;
