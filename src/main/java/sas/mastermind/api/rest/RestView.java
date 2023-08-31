@@ -2,7 +2,7 @@ package sas.mastermind.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sas.mastermind.api.dto.SessionViewDTO;
+import sas.mastermind.api.dto.BoardDTO;
 import sas.mastermind.core.controllers.PlayController;
 import sas.mastermind.core.controllers.ResumeController;
 import sas.mastermind.core.controllers.SaveController;
@@ -15,7 +15,6 @@ public class RestView extends View {
     private PlayView playView;
     private SaveView saveView;
     private ResumeView resumeView;
-    private SessionViewDTO sessionViewDTO;
     private String currentView; //TODO definir un mejor nombrre si es posible
 
     public RestView() {

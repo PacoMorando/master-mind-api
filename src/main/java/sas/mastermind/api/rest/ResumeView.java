@@ -21,7 +21,6 @@ public class ResumeView {
     @GetMapping("/resume")
     public void show(){
         System.out.println("Llegaste al ResumeView");
-        //return "MASTER MIND Resume View  you can access to:  ./continue or ./exit";
     }
 
     @GetMapping("/resume/continue")
