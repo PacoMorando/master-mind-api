@@ -15,11 +15,18 @@ public class ApiMasterMind {
     private final View view;
 
     @Autowired
+    public ApiMasterMind(RestView restView, SessionAPIDAO sessionAPIDAO){
+        this.logic = new LogicImplementation(sessionAPIDAO);//TODO Falta implementar el DAO
+        this.view = restView;
+        System.out.println("API CREAADA " + this.toString());
+    }
+
+   /* @Autowired
     public ApiMasterMind(RestView restView){
         this.logic = new LogicImplementation(new SessionAPIDAO());//TODO Falta implementar el DAO
         this.view = restView;
         System.out.println("API CREAADA " + this.toString());
-    }
+    }*/
 
     public void play() {
         AcceptorController acceptorController;

@@ -10,6 +10,7 @@ import sas.mastermind.core.controllers.SaveController;
 @RequestMapping("/mastermind")
 @CrossOrigin("http://localhost:4200")
 public class SaveView {
+    private int num = 0;//TODO Borrar esto que solo fue para probar
     private SaveController saveController;
     public void interact(SaveController saveController){
         this.saveController = saveController;
@@ -17,6 +18,9 @@ public class SaveView {
     }
     @GetMapping("/save")
     public void save(){
+        this.saveController.save("Game Saved_" + num);
+        num++;
+        this.saveController.next();
         System.out.println("Llegaste al SaveView");
     }
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "proposed_combinations")
-public class ProposedCombinations {
+public class ProposedCombination {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -13,9 +13,10 @@ public class ProposedCombinations {
     private String combination;
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "game_name")
-    private Game game;//Este nombre es el que va en ONE
+    private Game game;//Este nombre es el que va en ONE mappedBy
 
-    public ProposedCombinations(String combination) {
+    public ProposedCombination(Game game, String combination) {
+        this.game = game;
         this.combination = combination;
     }
 

@@ -13,7 +13,7 @@ public class Game {
     @Column(name = "secret_combination")
     private String secretCombination;
     @OneToMany(mappedBy = "game", cascade = {CascadeType.ALL})
-    private List<ProposedCombinations> proposedCombinations;
+    private List<ProposedCombination> proposedCombinations;
 
     public Game(String name, String secretCombination) {
         this.name = name;
@@ -36,11 +36,11 @@ public class Game {
         this.secretCombination = secretCombination;
     }
 
-    public List<ProposedCombinations> getProposedCombinations() {
+    public List<ProposedCombination> getProposedCombinations() {
         return proposedCombinations;
     }
 
-    public void setProposedCombinations(List<ProposedCombinations> proposedCombinations) {
+    public void setProposedCombinations(List<ProposedCombination> proposedCombinations) {
         this.proposedCombinations = proposedCombinations;
     }
 }
