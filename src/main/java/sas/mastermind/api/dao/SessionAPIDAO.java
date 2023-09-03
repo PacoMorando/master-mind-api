@@ -37,7 +37,6 @@ public class SessionAPIDAO extends SessionDAO {
     public void save(String name) {
         if (!this.exist(name)) {
             Game gameToSave = new Game(name, this.sessionDTO.getSecretCombination().toString());
-            /*this.gameDAO.insert(new sas.mastermind.api.dao.Game(name, this.sessionDTO.getSecretCombination().toString()));*/
             this.gameDAO.insert(gameToSave);
             this.saveProposedCombinations(gameToSave);
         } else {
