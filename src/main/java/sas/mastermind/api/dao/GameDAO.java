@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class GameDAO {
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public GameDAO(EntityManager entityManager) {
@@ -25,5 +25,13 @@ public class GameDAO {
     public List<Game> findAll() {
         TypedQuery<Game> query = this.entityManager.createQuery("FROM Game", Game.class);
         return query.getResultList();
+    }
+
+    public String getSecretCombination(String gameName) {
+        return this.find(gameName).getName();
+    }
+
+    private Game find(String gameName) {
+        return entityManager.find(Game.class, gameName);
     }
 }

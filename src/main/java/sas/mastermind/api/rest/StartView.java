@@ -1,9 +1,6 @@
 package sas.mastermind.api.rest;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.core.controllers.StartController;
 
@@ -29,6 +26,12 @@ public class StartView {
     public RedirectView newGame() {
         this.startController.start();
         System.out.println("New Game");
+        return new RedirectView("../main");
+    }
+    @GetMapping("/start/openGame")
+    public RedirectView openGame(@RequestParam String gameName) {
+        this.startController.start(gameName);
+        System.out.println("Open Game");
         return new RedirectView("../main");
     }
 

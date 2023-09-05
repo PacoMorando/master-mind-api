@@ -26,13 +26,13 @@ public class SessionAPIDAO extends SessionDAO {
     }
 
     @Override
-    public void load(String name) {
-        this.sessionDTO.setName(name);
-        this.sessionDTO.loadGame(this.getLoadedGame());
+    public void load(String gameName) {
+        this.sessionDTO.setName(gameName);
+        this.sessionDTO.loadGame(this.getLoadedGame(gameName));
     }
 
-    private sas.mastermind.core.models.Game getLoadedGame() {
-        return null;
+    private sas.mastermind.core.models.Game getLoadedGame(String gameName) {
+        return new GameDTO(this.gameDAO.getSecretCombination(gameName),this.proposedCombinationDAO.getProposedCombinations(gameName)).getLoadedGame();
     }
 
     @Override

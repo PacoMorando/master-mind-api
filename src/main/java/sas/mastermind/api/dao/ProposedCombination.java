@@ -15,6 +15,8 @@ public class ProposedCombination {
     @JoinColumn(name = "game_name")
     private Game game;//Este nombre es el que va en ONE mappedBy
 
+    public ProposedCombination(){}
+
     public ProposedCombination(Game game, String combination) {
         this.game = game;
         this.combination = combination;
