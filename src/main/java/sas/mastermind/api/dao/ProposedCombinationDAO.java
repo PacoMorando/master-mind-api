@@ -22,16 +22,4 @@ public class ProposedCombinationDAO {
     public void insert(ProposedCombination proposedCombination) {
         this.entityManager.persist(proposedCombination);
     }
-
-    public List<String> getProposedCombinations(String gameName) {
-        System.out.println("FROM ProposedCombination WHERE game='" + gameName + "'");
-        TypedQuery<ProposedCombination> query = entityManager.createQuery("FROM ProposedCombination WHERE game=:gameName", ProposedCombination.class);
-        query.setParameter("gameName", gameName);
-        List<ProposedCombination> proposedCombinationsQuerying = query.getResultList();
-        List<String>proposedCombinations = new ArrayList<>();
-        for (ProposedCombination combination : proposedCombinationsQuerying) {
-            proposedCombinations.add(combination.getCombination());
-        }
-        return proposedCombinations;
-    }
 }

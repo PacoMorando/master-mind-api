@@ -32,7 +32,7 @@ public class SessionAPIDAO extends SessionDAO {
     }
 
     private sas.mastermind.core.models.Game getLoadedGame(String gameName) {
-        return new GameDTO(this.gameDAO.getSecretCombination(gameName),this.proposedCombinationDAO.getProposedCombinations(gameName)).getLoadedGame();
+        return new GameDTO(this.gameDAO.getSecretCombination(gameName), this.gameDAO.getProposedCombinations(gameName)).getLoadedGame();
     }
 
     @Override
@@ -54,12 +54,6 @@ public class SessionAPIDAO extends SessionDAO {
 
     private void upDateProposedCombinations(String name) {
     }
-
- /*   @Override
-    public String[] getGamesNames() {
-        System.out.println("Array de string GameNames");
-        return new String[]{"GameOneDB", "GameTwoDB", "GameThreeDB", "GameFourDB"};
-    }*/
 
     @Override
     public String[] getGamesNames() {

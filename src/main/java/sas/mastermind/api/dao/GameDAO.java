@@ -28,7 +28,10 @@ public class GameDAO {
     }
 
     public String getSecretCombination(String gameName) {
-        return this.find(gameName).getName();
+        return this.find(gameName).getSecretCombination();
+    }
+    public List<ProposedCombination> getProposedCombinations(String gameName) {
+        return this.find(gameName).getProposedCombinations();
     }
 
     private Game find(String gameName) {

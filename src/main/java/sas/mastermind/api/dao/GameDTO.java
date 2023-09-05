@@ -1,7 +1,6 @@
 package sas.mastermind.api.dao;
 
 import sas.mastermind.core.models.Game;
-import sas.mastermind.core.models.ProposedCombination;
 import sas.mastermind.core.models.SecretCombination;
 
 import java.util.ArrayList;
@@ -9,8 +8,8 @@ import java.util.List;
 
 public class GameDTO{
     private String secretCombination;
-    private List<String> proposedCombinations;
-    public GameDTO(String secretCombination, List<String> proposedCombinations) {
+    private List<ProposedCombination> proposedCombinations;
+    public GameDTO(String secretCombination, List<ProposedCombination> proposedCombinations) {
         this.secretCombination = secretCombination;
         this.proposedCombinations = proposedCombinations;
     }
@@ -23,10 +22,10 @@ public class GameDTO{
         return new SecretCombination(this.secretCombination);
     }
 
-    private ArrayList<ProposedCombination> getProposeCombinations() {
-        ArrayList<ProposedCombination> proposedCombinations = new ArrayList<>();
-        for (String proposedCombination : this.proposedCombinations) {
-            proposedCombinations.add(new ProposedCombination(proposedCombination));
+    private ArrayList<sas.mastermind.core.models.ProposedCombination> getProposeCombinations() {
+        ArrayList<sas.mastermind.core.models.ProposedCombination> proposedCombinations = new ArrayList<>();
+        for (ProposedCombination proposedCombination : this.proposedCombinations) {
+            proposedCombinations.add(new sas.mastermind.core.models.ProposedCombination(proposedCombination.getCombination()));
         }
         return proposedCombinations;
     }
