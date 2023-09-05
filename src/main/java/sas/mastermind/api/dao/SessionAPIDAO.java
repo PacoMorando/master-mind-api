@@ -55,7 +55,8 @@ public class SessionAPIDAO extends SessionDAO {
 
     @Override
     public String[] getGamesNames() {
-        return new String[0];
+        System.out.println("Array de string GameNames");
+        return new String[]{"GameOneDB", "GameTwoDB", "GameThreeDB", "GameFourDB"};
     }
 
     @Override

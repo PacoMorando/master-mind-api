@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.core.controllers.StartController;
 
+import java.util.ArrayList;
+
 
 @RestController
 @RequestMapping("/mastermind")
@@ -24,9 +26,15 @@ public class StartView {
     }
 
     @GetMapping("/start/newGame")
-    public RedirectView newGame () {
+    public RedirectView newGame() {
         this.startController.start();
         System.out.println("New Game");
         return new RedirectView("../main");
+    }
+
+    @GetMapping("/start/getGamesNames")
+    public String[] getGamesNames() {
+        System.out.println("Obteniendo Array de Games Names");
+        return this.startController.getGamesNames();
     }
 }
