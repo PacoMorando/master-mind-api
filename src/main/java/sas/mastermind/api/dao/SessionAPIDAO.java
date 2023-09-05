@@ -4,22 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sas.mastermind.core.dao.SessionDAO;
 
+import java.util.List;
+
 @Component
 public class SessionAPIDAO extends SessionDAO {
     //TODO Programar esta clase
     private GameDAO gameDAO;
     private ProposedCombinationDAO proposedCombinationDAO;
 
-    public SessionAPIDAO (){
+    public SessionAPIDAO() {
     }
 
     @Autowired
-    public void setGameDao(GameDAO gameDAO){
+    public void setGameDao(GameDAO gameDAO) {
         this.gameDAO = gameDAO;
     }
 
     @Autowired
-    public void setProposedCombinationDAO(ProposedCombinationDAO proposedCombinationDAO){
+    public void setProposedCombinationDAO(ProposedCombinationDAO proposedCombinationDAO) {
         this.proposedCombinationDAO = proposedCombinationDAO;
     }
 
@@ -46,17 +48,27 @@ public class SessionAPIDAO extends SessionDAO {
 
     private void saveProposedCombinations(Game game) {
         for (sas.mastermind.core.models.ProposedCombination proposedCombination : this.sessionDTO.getProposeCombinations()) {
-            this.proposedCombinationDAO.insert(new ProposedCombination(game,proposedCombination.toString()));
+            this.proposedCombinationDAO.insert(new ProposedCombination(game, proposedCombination.toString()));
         }
     }
 
     private void upDateProposedCombinations(String name) {
     }
 
-    @Override
+ /*   @Override
     public String[] getGamesNames() {
         System.out.println("Array de string GameNames");
         return new String[]{"GameOneDB", "GameTwoDB", "GameThreeDB", "GameFourDB"};
+    }*/
+
+    @Override
+    public String[] getGamesNames() {
+        List<Game> games = this.gameDAO.findAll();
+        String[] names = new String[games.size()];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = games.get(i).getName();
+        }
+        return names;
     }
 
     @Override

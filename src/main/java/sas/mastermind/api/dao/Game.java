@@ -15,6 +15,8 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = {CascadeType.ALL})
     private List<ProposedCombination> proposedCombinations;
 
+    public Game() {}
+
     public Game(String name, String secretCombination) {
         this.name = name;
         this.secretCombination = secretCombination;
