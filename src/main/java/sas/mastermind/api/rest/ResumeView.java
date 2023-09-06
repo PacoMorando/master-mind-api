@@ -13,24 +13,29 @@ import sas.mastermind.core.controllers.ResumeController;
 public class ResumeView {
     private ResumeController resumeController;
 
-    public void interact (ResumeController resumeController){
+    public void interact(ResumeController resumeController) {
         System.out.println("Interact del ResumeView");
         this.resumeController = resumeController;
     }
 
     @GetMapping("/resume")
-    public void show(){
+    public void show() {
         System.out.println("Llegaste al ResumeView");
     }
 
     @GetMapping("/resume/continue")
+    public void continueGame() {
+        this.resumeController.resume(true);
+    }
+
+    /*@GetMapping("/resume/continue")
     public RedirectView continueGame (){
         this.resumeController.resume(true);
         return new RedirectView("../start");
-    }
+    }*/
 
     @GetMapping("/resume/exit")
-    public RedirectView exitGame (){
+    public RedirectView exitGame() {
         this.resumeController.resume(false);
         return new RedirectView("../main");
     }

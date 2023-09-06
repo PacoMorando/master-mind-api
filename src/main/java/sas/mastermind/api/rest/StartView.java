@@ -19,6 +19,7 @@ public class StartView {
 
     @GetMapping("/start")
     public void show() {
+        //this.startController.start();
         System.out.println("Llgaste al start");
     }
 

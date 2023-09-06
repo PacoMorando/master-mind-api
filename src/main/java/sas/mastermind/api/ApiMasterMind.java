@@ -21,13 +21,6 @@ public class ApiMasterMind {
         System.out.println("API CREAADA " + this.toString());
     }
 
-   /* @Autowired
-    public ApiMasterMind(RestView restView){
-        this.logic = new LogicImplementation(new SessionAPIDAO());//TODO Falta implementar el DAO
-        this.view = restView;
-        System.out.println("API CREAADA " + this.toString());
-    }*/
-
     public void play() {
         AcceptorController acceptorController;
         acceptorController = this.logic.getController();
