@@ -66,7 +66,7 @@ public class SessionAPIDAO extends SessionDAO {
     }
 
     @Override
-    public boolean exist(String name) {
-        return false;
+    public boolean exist(String gameName) {
+        return this.gameDAO.find(gameName) != null;
     }
 }

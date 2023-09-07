@@ -34,7 +34,7 @@ public class GameDAO {
         return this.find(gameName).getProposedCombinations();
     }
 
-    private Game find(String gameName) {
+    public Game find(String gameName) {
         return entityManager.find(Game.class, gameName);
     }
 }
