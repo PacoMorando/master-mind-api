@@ -52,7 +52,9 @@ public class SessionAPIDAO extends SessionDAO {
         }
     }
 
-    private void upDateProposedCombinations(String name) {
+    private void upDateProposedCombinations(String gameName) {
+        this.gameDAO.find(gameName).getProposedCombinations().clear();//TODO aqui me quede, no se si tengo que hacer el clear o que onda
+        //TODO Aqui es donde me falta para guardar partidas
     }
 
     @Override
