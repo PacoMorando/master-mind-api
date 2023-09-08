@@ -30,6 +30,7 @@ public class GameDAO {
     public String getSecretCombination(String gameName) {
         return this.find(gameName).getSecretCombination();
     }
+
     public List<ProposedCombination> getProposedCombinations(String gameName) {
         return this.find(gameName).getProposedCombinations();
     }
@@ -39,7 +40,7 @@ public class GameDAO {
     }
 
     @Transactional
-    public void update(Game game){
+    public void update(Game game) {
         this.entityManager.merge(game);
     }
 }

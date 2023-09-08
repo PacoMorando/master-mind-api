@@ -26,9 +26,9 @@ public class SaveView {
         if (this.saveController.hasName()) {
             this.saveController.save();
             this.saveController.next();
-            System.out.println("Partida guardad, ya tenia nombre" );
+            System.out.println("Partida guardad, ya tenia nombre");
         }
-        return  this.saveController.hasName();
+        return this.saveController.hasName();
     }
 
     @GetMapping("/save/saving")
@@ -44,11 +44,15 @@ public class SaveView {
 
     @GetMapping("/save/exist")
     public boolean exist(@RequestParam String gameName) {
-        /*this.saveController.save(gameName);
-        this.saveController.next();*/
         System.out.println("Preguntaste si existe: " + gameName);
         System.out.println(this.saveController.exists(gameName));
-        /*return false;*/
         return this.saveController.exists(gameName);
+    }
+
+    @GetMapping("/save/cancel")
+    public RedirectView exit() {
+        System.out.println("Cancelaste el save");
+        this.saveController.next();
+        return new RedirectView("../main");
     }
 }

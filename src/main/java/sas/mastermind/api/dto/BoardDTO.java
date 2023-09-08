@@ -6,7 +6,7 @@ import sas.mastermind.core.models.ProposedCombination;
 import java.util.ArrayList;
 
 public class BoardDTO {
-    private PlayController playController;
+    private final PlayController playController;
 
     public BoardDTO(PlayController playController) {
         this.playController = playController;

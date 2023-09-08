@@ -12,7 +12,6 @@ public class PlayView {
     private BoardDTO boardDTO;
 
     public void interact(PlayController playController) {
-        //this.playController = playController;
         this.boardDTO = new BoardDTO(playController);
     }
 
@@ -22,7 +21,7 @@ public class PlayView {
         return this.boardDTO;
     }
 
-    @PutMapping("/play/addProposedCombination")//TODO este no esta redirigiendo...
+    @PutMapping("/play/addProposedCombination")
     public BoardDTO addProposedCombination(@RequestBody String proposedCombination) {
         this.boardDTO.addProposedCombination(proposedCombination);
         System.out.println("Agregaste la combination: " + proposedCombination);

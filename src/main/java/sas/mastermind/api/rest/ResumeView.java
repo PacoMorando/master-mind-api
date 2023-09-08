@@ -28,15 +28,10 @@ public class ResumeView {
         this.resumeController.resume(true);
     }
 
-    /*@GetMapping("/resume/continue")
-    public RedirectView continueGame (){
-        this.resumeController.resume(true);
-        return new RedirectView("../start");
-    }*/
-
     @GetMapping("/resume/exit")
-    public RedirectView exitGame() {
-        this.resumeController.resume(false);
-        return new RedirectView("../main");
+    public void exitGame() {
+        this.resumeController.resume(true);
+        System.out.println("RESUME EXIT");
+        /*return new RedirectView("../main");*/
     }
 }

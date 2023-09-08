@@ -6,16 +6,17 @@ import sas.mastermind.core.models.SecretCombination;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameDTO{
-    private String secretCombination;
-    private List<ProposedCombination> proposedCombinations;
+public class GameDTO {
+    private final String secretCombination;
+    private final List<ProposedCombination> proposedCombinations;
+
     public GameDTO(String secretCombination, List<ProposedCombination> proposedCombinations) {
         this.secretCombination = secretCombination;
         this.proposedCombinations = proposedCombinations;
     }
 
     public Game getLoadedGame() {
-        return new Game(this.getSecretCombination(),this.getProposeCombinations());
+        return new Game(this.getSecretCombination(), this.getProposeCombinations());
     }
 
     private SecretCombination getSecretCombination() {
