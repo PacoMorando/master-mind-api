@@ -37,4 +37,9 @@ public class GameDAO {
     public Game find(String gameName) {
         return entityManager.find(Game.class, gameName);
     }
+
+    @Transactional
+    public void update(Game game){
+        this.entityManager.merge(game);
+    }
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 @Component
 public class SessionAPIDAO extends SessionDAO {
-    //TODO Programar esta clase
     private GameDAO gameDAO;
     private ProposedCombinationDAO proposedCombinationDAO;
 
@@ -36,13 +35,13 @@ public class SessionAPIDAO extends SessionDAO {
     }
 
     @Override
-    public void save(String name) {
-        if (!this.exist(name)) {
-            Game gameToSave = new Game(name, this.sessionDTO.getSecretCombination().toString());
+    public void save(String gameName) {
+        if (!this.exist(gameName)) {
+            Game gameToSave = new Game(gameName, this.sessionDTO.getSecretCombination().toString());
             this.gameDAO.insert(gameToSave);
             this.saveProposedCombinations(gameToSave);
         } else {
-            this.upDateProposedCombinations(name);
+            this.upDateProposedCombinations(gameName);
         }
     }
 
@@ -53,8 +52,10 @@ public class SessionAPIDAO extends SessionDAO {
     }
 
     private void upDateProposedCombinations(String gameName) {
-        this.gameDAO.find(gameName).getProposedCombinations().clear();//TODO aqui me quede, no se si tengo que hacer el clear o que onda
-        //TODO Aqui es donde me falta para guardar partidas
+        Game gameToUpdate = this.gameDAO.find(gameName);
+        for (int i = gameToUpdate.getProposedCombinations().size(); i < this.sessionDTO.getProposeCombinations().size(); i++) {
+            this.proposedCombinationDAO.insert(new ProposedCombination(gameToUpdate, this.sessionDTO.getProposeCombinations().get(i).toString()));
+        }
     }
 
     @Override
