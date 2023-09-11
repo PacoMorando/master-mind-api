@@ -5,7 +5,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.core.controllers.SaveController;
 
 @RestController
-@RequestMapping("/mastermind")
+@RequestMapping("/")
 @CrossOrigin("http://localhost:4200")
 public class SaveView {
     private SaveController saveController;

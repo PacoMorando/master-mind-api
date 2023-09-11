@@ -6,7 +6,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.api.ApiMasterMind;
 
 @RestController
-@RequestMapping("/mastermind")
+@RequestMapping("/")
 @CrossOrigin("http://localhost:4200")
 public class MasterMindRestController {
     private ApiMasterMind apiMasterMind;

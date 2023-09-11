@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import sas.mastermind.core.controllers.ResumeController;
 
 @RestController
-@RequestMapping("/mastermind")
+@RequestMapping("/")
 @CrossOrigin("http://localhost:4200")
 public class ResumeView {
     private ResumeController resumeController;

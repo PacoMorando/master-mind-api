@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping("/mastermind")
+@RequestMapping("/")
 @CrossOrigin("http://localhost:4200")
 public class StartView {
     private StartController startController;

@@ -6,7 +6,7 @@ import sas.mastermind.api.dto.BoardDTO;
 import sas.mastermind.core.controllers.PlayController;
 
 @RestController
-@RequestMapping("/mastermind")
+@RequestMapping("/")
 @CrossOrigin("http://localhost:4200")
 public class PlayView {
     private BoardDTO boardDTO;
