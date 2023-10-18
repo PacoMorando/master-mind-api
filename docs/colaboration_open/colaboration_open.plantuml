@@ -1,0 +1,57 @@
+@startuml colaboration-open
+!theme plain
+
+actor player
+
+package angular {
+    agent startViewHTML
+    agent startViewComponent
+    agent startService
+    agent httpClient
+}
+
+package controllers <<master-mind-core dependency>> {
+    agent startController
+}
+
+package spring-rest-views {
+    agent restStartView <<@RestCotroller>>
+}
+
+package spring-dao {
+    agent sessionImpDAO
+    agent gameDAO <<Repository>>
+    agent gameDTO
+}
+
+package models <<master-mind-core dependency>>{
+    agent session
+    agent sessionDTO
+    agent game
+}
+
+'angular
+player -right-> startViewHTML :open()
+startViewHTML -right-> startViewComponent :open(gameName)
+startViewComponent --> startService :open(gameName)\ngetNames()
+startService -right-> httpClient :get(gameName)
+
+httpClient -up-> restStartView :get(gameName)
+restStartView --> startController :get(gameName)
+
+'controllers
+startController --> session :next()
+startController --> sessionImpDAO :load(gameSelectedTitle)\nassociate(this.session)
+
+'springDAO
+sessionImpDAO --> gameDAO :find(gameName)\ngetPropCombs(gameName)
+sessionImpDAO --> sessionDTO :load(game)
+sessionImpDAO --> gameDTO :getLoadedGame()
+gameDTO -right-> game :new()
+gameDTO .left.> gameDAO
+
+'models
+sessionDTO -right-> session :load(game)
+sessionDTO ..> game
+
+@enduml

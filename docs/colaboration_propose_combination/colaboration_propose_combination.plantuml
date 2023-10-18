@@ -1,0 +1,52 @@
+@startuml colaboration-propose-combination
+!theme plain
+actor player
+
+package angular{
+    agent combinationPickerHTML
+    agent combinationPicker
+    agent playService
+    agent httpClient
+}
+package controllers <<master-mind-core dependency>> {
+    agent playController
+    agent proposedCombinationController
+}
+package models <<master-mind-core dependency>> {
+    agent session
+    agent registry
+    agent game
+    agent proposedCombination
+    agent combination
+    agent colors
+}
+
+package spring-rest-views {
+    agent restPlayView <<@RestCotroller>>
+    agent boardDTO
+}
+
+'angular
+player -right-> combinationPickerHTML :addPropComb(comb)
+combinationPickerHTML -right-> combinationPicker :addPropComb(comb)
+combinationPicker --> playService :addPropComb(comb)
+playService -right-> httpClient :addPropComb(comb)
+httpClient -up-> restPlayView :put(comb)
+
+'spring
+restPlayView --> boardDTO :addPropComb(comb)
+boardDTO --> playController :addPropComb(comb)
+
+'controllers
+playController -left-> proposedCombinationController :addPropComb()
+proposedCombinationController --> session :addPropComb()\nnextAttempt\nregist()
+
+'models
+session -down-> game :addPropComb()\nnextAttempt
+session -down-> registry :regist()
+registry .left.> game
+game -left-> proposedCombination :add()
+proposedCombination ..> combination
+combination .right.> colors
+
+@enduml
